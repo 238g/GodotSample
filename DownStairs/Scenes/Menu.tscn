@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://Textures/bg.jpg" type="Texture" id=1]
+[ext_resource path="res://Textures/start_btn.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/menu/startBtn.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/World.tscn" type="PackedScene" id=4]
+
+[node name="Menu" type="Node2D"]
+
+[node name="Background" type="Sprite" parent="."]
+
+transform/pos = Vector2( 225, 400 )
+transform/scale = Vector2( 2.67857, 2.66667 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="StartBtn" type="TextureButton" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 80.0
+margin/top = 330.0
+margin/right = 370.0
+margin/bottom = 420.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 2 )
+params/resize_mode = 1
+params/stretch_mode = 0
+script/script = ExtResource( 3 )
+nextScene = ExtResource( 4 )
+
+[connection signal="pressed" from="StartBtn" to="StartBtn" method="_on_StartBtn_pressed"]
+
+

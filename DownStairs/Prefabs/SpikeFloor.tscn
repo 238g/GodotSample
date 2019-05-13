@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=1]
+
+[ext_resource path="res://Scripts/game/Floor.gd" type="Script" id=1]
+[ext_resource path="res://Textures/tile12.png" type="Texture" id=2]
+[ext_resource path="res://Textures/tile13.png" type="Texture" id=3]
+[ext_resource path="res://Textures/tile14.png" type="Texture" id=4]
+[ext_resource path="res://Textures/Spike.png" type="Texture" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 8.4058, 9.89224 )
+
+[node name="SpikeFloor" type="StaticBody2D" groups=[
+"SpikeFloor",
+]]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 9.51724, 0, 0, 2.34629, 3.69549e-06, -20.2489 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+script/script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+
+transform/pos = Vector2( -60, 30 )
+transform/scale = Vector2( 0.234375, 0.234375 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1" type="Sprite" parent="."]
+
+transform/pos = Vector2( 0, 30 )
+transform/scale = Vector2( 0.234375, 0.234375 )
+texture = ExtResource( 3 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+
+transform/pos = Vector2( 60, 30 )
+transform/scale = Vector2( 0.234375, 0.234375 )
+texture = ExtResource( 4 )
+
+[node name="Sprite3" type="Sprite" parent="."]
+
+transform/pos = Vector2( -45, -30 )
+transform/scale = Vector2( 0.351562, 0.234375 )
+texture = ExtResource( 5 )
+
+[node name="Sprite4" type="Sprite" parent="."]
+
+transform/pos = Vector2( 45, -30 )
+transform/scale = Vector2( 0.351562, 0.234375 )
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( 3.69549e-06, -20.2489 )
+transform/scale = Vector2( 9.51724, 2.34629 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+

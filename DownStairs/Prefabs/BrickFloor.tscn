@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://Scripts/game/Floor.gd" type="Script" id=1]
+[ext_resource path="res://Textures/tile12.png" type="Texture" id=2]
+[ext_resource path="res://Textures/tile13.png" type="Texture" id=3]
+[ext_resource path="res://Textures/tile14.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10.6306, 10.6364 )
+
+[node name="BrickFloor" type="StaticBody2D"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 7.05508, 0, 0, 1.26923, 5.00001, 13.5 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+script/script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+SPEED = 200
+
+[node name="Sprite" type="Sprite" parent="."]
+
+transform/pos = Vector2( -45, 25 )
+transform/scale = Vector2( 0.195312, 0.195313 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1" type="Sprite" parent="."]
+
+transform/pos = Vector2( 5.25, 25 )
+transform/scale = Vector2( 0.193359, 0.195313 )
+texture = ExtResource( 3 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+
+transform/pos = Vector2( 55, 25 )
+transform/scale = Vector2( 0.195313, 0.195313 )
+texture = ExtResource( 4 )
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( 5.00001, 13.5 )
+transform/scale = Vector2( 7.05508, 1.26923 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+
