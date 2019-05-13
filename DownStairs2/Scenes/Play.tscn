@@ -1,0 +1,210 @@
+[gd_scene load_steps=12 format=1]
+
+[ext_resource path="res://Scripts/Play.gd" type="Script" id=1]
+[ext_resource path="res://Prefabs/Backgrounds.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Prefabs/Character.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Prefabs/NormalFloor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Prefabs/Spike.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scripts/GameOverScreen.gd" type="Script" id=6]
+[ext_resource path="res://Assets/font/kenvector_future.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Prefabs/BaseBtn.tscn" type="PackedScene" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 202.493, 11.2455 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 16.7237, 10 )
+
+[sub_resource type="DynamicFont" id=3]
+
+font/size = 40
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 7 )
+
+[node name="Play" type="Node"]
+
+process/pause_mode = 1
+script/script = ExtResource( 1 )
+
+[node name="Backgrounds" parent="." instance=ExtResource( 2 )]
+
+[node name="FallOut" type="StaticBody2D" parent="."]
+
+editor/display_folded = true
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1.13584, 0, 0, 6.78408, 350, 576.29 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FallOut"]
+
+transform/pos = Vector2( 350, 576.29 )
+transform/scale = Vector2( 1.13584, 6.78408 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Character" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 250, 90 )
+
+[node name="Obstacles" type="Node" parent="."]
+
+editor/display_folded = true
+
+[node name="NormalFloor" parent="Obstacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 250, 300 )
+
+[node name="NormalFloor1" parent="Obstacles" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 450, 400 )
+
+[node name="UpperSpikes" type="RigidBody2D" parent="."]
+
+editor/display_folded = true
+input/pickable = false
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 13.8185, 0, 0, 1.92308, 348.904, 5 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+mode = 1
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+velocity/linear = Vector2( 0, 0 )
+velocity/angular = 0.0
+damp_override/linear = -1.0
+damp_override/angular = -1.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Spike" parent="UpperSpikes" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 180, 20 )
+flip_v = true
+
+[node name="Spike1" parent="UpperSpikes" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 340, 140 )
+offset = Vector2( -426.667, -768 )
+flip_v = true
+
+[node name="Spike2" parent="UpperSpikes" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 400, 140 )
+offset = Vector2( -426.667, -768 )
+flip_v = true
+
+[node name="Spike3" parent="UpperSpikes" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 460, 140 )
+offset = Vector2( -426.667, -768 )
+flip_v = true
+
+[node name="Spike4" parent="UpperSpikes" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 510, 140 )
+offset = Vector2( -426.667, -768 )
+flip_v = true
+
+[node name="Spike5" parent="UpperSpikes" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 570, 140 )
+offset = Vector2( -426.667, -768 )
+flip_v = true
+
+[node name="Spike6" parent="UpperSpikes" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 620, 140 )
+offset = Vector2( -426.667, -768 )
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpperSpikes"]
+
+transform/pos = Vector2( 348.904, 5 )
+transform/scale = Vector2( 13.8185, 1.92308 )
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+
+[node name="GameOverScreen" type="Control" parent="."]
+
+process/pause_mode = 2
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 6 )
+
+[node name="Panel" type="Panel" parent="GameOverScreen"]
+
+visibility/self_opacity = 0.4
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 160.0
+margin/top = 0.0
+margin/right = -540.0
+margin/bottom = -500.0
+
+[node name="Label" type="Label" parent="GameOverScreen/Panel"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 110.0
+margin/right = 0.0
+margin/bottom = 280.0
+custom_fonts/font = SubResource( 3 )
+text = "GAME OVER"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="RestartBtn" parent="GameOverScreen" instance=ExtResource( 8 )]
+
+margin/top = 310.0
+margin/bottom = 420.0
+
+[connection signal="button_up" from="GameOverScreen/RestartBtn" to="GameOverScreen" method="_on_RestartBtn_button_up"]
+
+

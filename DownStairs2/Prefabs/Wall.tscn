@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=1]
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 160, 0, 160, 540, 120, 540, 120, -40 )
+
+[sub_resource type="ConvexPolygonShape2D" id=7]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 160, 0, 120, -40, 580, -40, 540, 0 )
+
+[sub_resource type="ConvexPolygonShape2D" id=8]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 540, 0, 580, -40, 580, 540, 540, 540 )
+
+[node name="Wall" type="StaticBody2D"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 6 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+shapes/1/shape = SubResource( 7 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/1/trigger = false
+shapes/2/shape = SubResource( 8 )
+shapes/2/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/2/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+
+build_mode = 0
+polygon = Vector2Array( 160, 540, 120, 540, 120, -40, 580, -40, 580, 540, 540, 540, 540, 0, 160, 0 )
+shape_range = Vector2( 0, 2 )
+trigger = false
+
+

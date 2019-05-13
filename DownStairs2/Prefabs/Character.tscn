@@ -1,0 +1,127 @@
+[gd_scene load_steps=33 format=1]
+
+[ext_resource path="res://Scripts/Character.gd" type="Script" id=1]
+[ext_resource path="res://Assets/images/jack/Idle (1).png" type="Texture" id=2]
+[ext_resource path="res://Assets/images/jack/Idle (2).png" type="Texture" id=3]
+[ext_resource path="res://Assets/images/jack/Idle (3).png" type="Texture" id=4]
+[ext_resource path="res://Assets/images/jack/Idle (4).png" type="Texture" id=5]
+[ext_resource path="res://Assets/images/jack/Idle (5).png" type="Texture" id=6]
+[ext_resource path="res://Assets/images/jack/Idle (6).png" type="Texture" id=7]
+[ext_resource path="res://Assets/images/jack/Idle (7).png" type="Texture" id=8]
+[ext_resource path="res://Assets/images/jack/Idle (8).png" type="Texture" id=9]
+[ext_resource path="res://Assets/images/jack/Idle (9).png" type="Texture" id=10]
+[ext_resource path="res://Assets/images/jack/Idle (10).png" type="Texture" id=11]
+[ext_resource path="res://Assets/images/jack/Run (1).png" type="Texture" id=12]
+[ext_resource path="res://Assets/images/jack/Run (2).png" type="Texture" id=13]
+[ext_resource path="res://Assets/images/jack/Run (3).png" type="Texture" id=14]
+[ext_resource path="res://Assets/images/jack/Run (4).png" type="Texture" id=15]
+[ext_resource path="res://Assets/images/jack/Run (5).png" type="Texture" id=16]
+[ext_resource path="res://Assets/images/jack/Run (6).png" type="Texture" id=17]
+[ext_resource path="res://Assets/images/jack/Run (7).png" type="Texture" id=18]
+[ext_resource path="res://Assets/images/jack/Run (8).png" type="Texture" id=19]
+[ext_resource path="res://Assets/images/jack/Dead (1).png" type="Texture" id=20]
+[ext_resource path="res://Assets/images/jack/Dead (2).png" type="Texture" id=21]
+[ext_resource path="res://Assets/images/jack/Dead (3).png" type="Texture" id=22]
+[ext_resource path="res://Assets/images/jack/Dead (4).png" type="Texture" id=23]
+[ext_resource path="res://Assets/images/jack/Dead (5).png" type="Texture" id=24]
+[ext_resource path="res://Assets/images/jack/Dead (6).png" type="Texture" id=25]
+[ext_resource path="res://Assets/images/jack/Dead (7).png" type="Texture" id=26]
+[ext_resource path="res://Assets/images/jack/Dead (8).png" type="Texture" id=27]
+[ext_resource path="res://Assets/images/jack/Dead (9).png" type="Texture" id=28]
+[ext_resource path="res://Assets/images/jack/Dead (10).png" type="Texture" id=29]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 9.91525, 10 )
+
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "Run",
+"speed": 20.0
+}, {
+"frames": [ ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ) ],
+"loop": true,
+"name": "Dead",
+"speed": 3.0
+} ]
+
+[sub_resource type="Animation" id=3]
+
+resource/name = "Invincible"
+length = 1.2
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("CharacterAnim:visibility/opacity")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2 ),
+"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.5, 1.0, 0.5, 1.0, 0.5, 1.0, 0.5, 1.0, 0.5, 1.0, 0.5, 1.0 ]
+}
+
+[node name="Character" type="KinematicBody2D"]
+
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 2.31539, 0, 0, 3.23077, 0.0961544, 2 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+script/script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CharacterAnim" type="AnimatedSprite" parent="."]
+
+process/pause_mode = 2
+transform/scale = Vector2( 0.1, 0.1 )
+frames = SubResource( 2 )
+animation = "Idle"
+frame = 7
+playing = true
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( 0.0961544, 2 )
+transform/scale = Vector2( 2.31539, 3.23077 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="CollisionTimer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[node name="Effect" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/Invincible = SubResource( 3 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[connection signal="finished" from="CharacterAnim" to="." method="_on_CharacterAnim_finished"]
+
+[connection signal="timeout" from="CollisionTimer" to="." method="_on_CollisionTimer_timeout"]
+
+

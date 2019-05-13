@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=1]
+
+[ext_resource path="res://Scripts/Menu.gd" type="Script" id=1]
+[ext_resource path="res://Prefabs/Backgrounds.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/font/kenvector_future.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Prefabs/BaseBtn.tscn" type="PackedScene" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+
+font/size = 30
+font/use_mipmaps = false
+font/use_filter = false
+font/font = ExtResource( 3 )
+
+[node name="Menu" type="Node"]
+
+script/script = ExtResource( 1 )
+
+[node name="Backgrounds" parent="." instance=ExtResource( 2 )]
+
+[node name="TitleText" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 150.0
+margin/top = 100.0
+margin/right = 550.0
+margin/bottom = 154.0
+custom_fonts/font = SubResource( 1 )
+text = "DOWN STAIRS"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="StartBtn" parent="." instance=ExtResource( 4 )]
+
+[connection signal="button_up" from="StartBtn" to="." method="_on_StartBtn_button_up"]
+
+
