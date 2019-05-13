@@ -1,0 +1,85 @@
+[gd_scene load_steps=10 format=1]
+
+[ext_resource path="res://scripts/player.gd" type="Script" id=1]
+[ext_resource path="res://scenes/player_bullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://art/sheet.playerShip2_orange.atex" type="Texture" id=3]
+[ext_resource path="res://art/sheet.shield3.atex" type="Texture" id=4]
+[ext_resource path="res://art/sheet.fire15.atex" type="Texture" id=5]
+[ext_resource path="res://art/sheet.fire14.atex" type="Texture" id=6]
+[ext_resource path="res://art/sheet.fire11.atex" type="Texture" id=7]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 39.2687
+
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="player" type="Area2D"]
+
+transform/pos = Vector2( 555.293, 284.48 )
+transform/scale = Vector2( 0.6, 0.6 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 5 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+max_vel = 400
+friction = 0.65
+bullet = ExtResource( 2 )
+
+[node name="ship" type="Sprite" parent="."]
+
+texture = ExtResource( 3 )
+
+[node name="collision" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( 0, 5 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="bullet_container" type="Node" parent="."]
+
+[node name="muzzle" type="Position2D" parent="."]
+
+transform/pos = Vector2( 0, -50 )
+
+[node name="gun_timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.2
+one_shot = true
+autostart = false
+
+[node name="shield" type="Sprite" parent="."]
+
+transform/scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 4 )
+
+[node name="exhaust" type="AnimatedSprite" parent="."]
+
+transform/pos = Vector2( 0, 55 )
+transform/scale = Vector2( 1.2, 1.2 )
+frames = SubResource( 2 )
+animation = "default"
+frame = 2
+playing = true
+
+[connection signal="body_enter" from="." to="." method="_on_player_body_enter"]
+
+

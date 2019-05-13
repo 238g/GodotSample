@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=1]
+
+[ext_resource path="res://scripts/main.gd" type="Script" id=1]
+[ext_resource path="res://scenes/asteroid.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/explosion.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://art/starfield.png" type="Texture" id=5]
+[ext_resource path="res://scenes/player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=7]
+
+[node name="main" type="Node"]
+
+process/pause_mode = 1
+script/script = ExtResource( 1 )
+asteroid = ExtResource( 2 )
+explosion = ExtResource( 3 )
+enemy = ExtResource( 4 )
+
+[node name="background" type="Sprite" parent="."]
+
+transform/scale = Vector2( 1.3, 1.3 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="player" parent="." instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 547.131, 292.642 )
+
+[node name="spawn_locations" type="Node" parent="."]
+
+editor/display_folded = true
+
+[node name="Position2D" type="Position2D" parent="spawn_locations"]
+
+transform/pos = Vector2( 125.154, 96.5866 )
+
+[node name="Position2D1" type="Position2D" parent="spawn_locations"]
+
+transform/pos = Vector2( 927.775, 104.749 )
+
+[node name="Position2D2" type="Position2D" parent="spawn_locations"]
+
+transform/pos = Vector2( 933.217, 534.627 )
+
+[node name="Position2D3" type="Position2D" parent="spawn_locations"]
+
+transform/pos = Vector2( 153.722, 529.186 )
+
+[node name="Position2D4" type="Position2D" parent="spawn_locations"]
+
+transform/pos = Vector2( 557.753, 100.668 )
+
+[node name="Position2D5" type="Position2D" parent="spawn_locations"]
+
+transform/pos = Vector2( 564.555, 522.384 )
+
+[node name="Position2D6" type="Position2D" parent="spawn_locations"]
+
+transform/pos = Vector2( 137.398, 295.201 )
+
+[node name="Position2D7" type="Position2D" parent="spawn_locations"]
+
+transform/pos = Vector2( 944.1, 302.003 )
+
+[node name="asteroid_container" type="Node" parent="."]
+
+[node name="HUD" parent="." instance=ExtResource( 7 )]
+
+[node name="restart_timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = true
+autostart = false
+
+[node name="enemy_timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = true
+autostart = false
+
+[connection signal="timeout" from="restart_timer" to="." method="_on_restart_timer_timeout"]
+
+[connection signal="timeout" from="enemy_timer" to="." method="_on_enemy_timer_timeout"]
+
+
